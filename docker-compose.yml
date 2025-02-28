@@ -8,3 +8,17 @@ services:
       - ./src:/app/src
     environment:
       - NODE_ENV=development
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASS=123456
+      - DB_NAME=meubanco
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:latest
+    environment:
+      MARIADB_ROOT_PASSWORD: 123456
+      MARIADB_DATABASE: meubanco
+    ports:
+      - "3306:3306"
